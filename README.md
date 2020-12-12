@@ -7,10 +7,11 @@ This application is a RESTful API for identity authentication. It is developed b
 ## Directory
 
 ```shell
-├── auth                				  // 
-│   ├── __init__.py               // 
-│   └── auth.py  				          // 
+├── auth                				// 
+│   ├── __init__.py                                     // 
+│   └── auth.py  				        // 
 ├── common                				// 
+│   ├── __init__.py                                     //
 │   ├── db                				// 
 │   │   ├── __init__.py   				// 
 │   │   ├── user.py       				// 
@@ -26,8 +27,8 @@ This application is a RESTful API for identity authentication. It is developed b
 │       ├── output_json.py				// 
 │       ├── parser.py     				// 
 │       └── snowflake.py  				// 
-├── __init__.py                   // 
-├── main.py                   		// 
+├── __init__.py                                         // 
+├── main.py                   		                // 
 ...
 ```
 
