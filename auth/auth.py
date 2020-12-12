@@ -3,11 +3,11 @@ from flask_restful import Resource
 from flask_restful.reqparse import RequestParser
 
 from bcrypt import gensalt, hashpw, checkpw
-from utilits.jwt import generate_jwt
-from utilits import parser
-from utilits.decorators import login_required
-from db import db
-from db.user import User
+from common.utilits.jwt import generate_jwt
+from common.utilits import parser
+from common.utilits.decorators import login_required
+from common.db import db
+from common.db.user import User
 from datetime import datetime, timedelta
 
 

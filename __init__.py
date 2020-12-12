@@ -1,9 +1,9 @@
 from flask import Flask
 
-from db import db
+from common.db import db
 from auth import user_auth_bp
-from utilits.middlewares import token_validation
-from utilits.snowflake import IdWorker
+from common.utilits.middlewares import token_validation
+from common.utilits.snowflake import IdWorker
 
 
 def create_flask_app(config, enable_config_file=False, env_config_file='file_name'):

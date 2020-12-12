@@ -2,7 +2,7 @@ from flask import Blueprint
 from flask_restful import Api
 
 from . import auth
-from utilits.output_json import output_json
+from common.utilits.output_json import output_json
 
 user_auth_bp = Blueprint('Auth', __name__, url_prefix='/auth')
 user_auth_api = Api(user_auth_bp, catch_all_404s=True)

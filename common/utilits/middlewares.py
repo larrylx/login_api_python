@@ -1,5 +1,5 @@
 from flask import request, g
-from utilits.jwt import verify_jwt
+from common.utilits.jwt import verify_jwt
 
 
 def token_validation():
