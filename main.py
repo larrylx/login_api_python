@@ -1,4 +1,4 @@
-from . import create_flask_app
+from __init__ import create_flask_app
 from flask import jsonify
 from common.settings.default import DefaultConfig
 

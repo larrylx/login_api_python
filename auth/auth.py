@@ -13,7 +13,7 @@ from datetime import datetime, timedelta
 
 class Authorization(Resource):
 
-    def _generate_tokens(self, user_id, refresh=True):
+    def _generate_tokens(self, user_id, user_name=None, refresh=True):
         """
         Generate token and refresh_token
         :param user_id: string
@@ -24,11 +24,11 @@ class Authorization(Resource):
         # token_secret = current_app.config['JWT_SECRET']
         token_expiry = datetime.utcnow() + timedelta(hours=current_app.config['JWT_EXPIRY_HOURS'])
 
-        token = generate_jwt({'user_id': user_id}, token_expiry)
+        token = generate_jwt({'user_id': user_id, 'user_name': user_name}, token_expiry)
 
         if refresh:
             token_expiry = datetime.utcnow() + timedelta(days=current_app.config['JWT_REFRESH_DAYS'])
-            refresh_token = generate_jwt({'user_id': user_id,
+            refresh_token = generate_jwt({'user_id': user_id, 'user_name': user_name, 
                                           'is_refresh': True}, token_expiry)
         else:
             refresh_token = None
@@ -66,7 +66,7 @@ class Authorization(Resource):
             passwd_match = checkpw(password, user_password)
 
         if passwd_match:
-            token, refresh_token = self._generate_tokens(user_target.id)
+            token, refresh_token = self._generate_tokens(user_target.id, user_target.name)
             return {'token': token, 'refresh_token': refresh_token}, 201
         else:
             return {'message': {'Unauthorized': 'Incorrect Password or User Does not Exist'}}, 401
@@ -77,7 +77,7 @@ class Authorization(Resource):
         :return: token
         """
         if g.user_id is not None and g.is_refresh is True:
-            token, refresh_token = self._generate_tokens(g.user_id, refresh=False)
+            token, refresh_token = self._generate_tokens(g.user_id, g.user_name, refresh=False)
             return {'token': token}
         else:
             return {'message': {'Token': 'Invalid token, redirect to log in page'}}, 403
@@ -110,7 +110,7 @@ class Signup(Authorization):
             user = User(id=user_id, email=user_email, password=password, name=user_name, last_login=datetime.now())
             db.session.add(user)
             db.session.commit()
-            token, refresh_token = self._generate_tokens(user_id)
+            token, refresh_token = self._generate_tokens(user_id, user_name)
             return {'token': token, 'refresh_token': refresh_token}, 201
 
         else:
