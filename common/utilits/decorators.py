@@ -11,6 +11,6 @@ def login_required(func):
 
         else:
 
-            return {'message': {'Token': 'Invalid token, redirect to log in page'}}, 401
+            return {'message': 'Invalid token, redirect to log in page'}, 401
 
     return wrapper
