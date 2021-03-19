@@ -5,7 +5,7 @@
 
 This application is a RESTful API for identity authentication. It is developed based on python, MySQL (MariaDB), and Snowflake technologies.
 
-[**Demo**](https://larrylx.com/about)
+[**Demo**](https://blog.larrylx.com/users/login)
 
 Sign up is coming.
 
